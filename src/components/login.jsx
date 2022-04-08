@@ -8,10 +8,11 @@ const Login = (props) => {
   function handleLogin(event) {
     event.preventDefault();
 
-    let validUser = props.users.filter(
-      (user) =>
+    let validUser = props.users.filter((user) => {
+      return (
         user.email == loginValue.email && user.password == loginValue.password
-    );
+      );
+    });
 
     if (validUser.length > 0) {
       navigate("/users");
