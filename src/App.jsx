@@ -20,22 +20,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="Container">
-          <Routes>
-            <Route path="/" element={<Login users={this.state.users} />} />
-            <Route
-              path="/registration"
-              element={
-                <Registration
-                  users={this.state.users}
-                  OnSaveUserData={this.OnSaveUserData}
-                />
-              }
-            />
-            <Route path="/users" element={<Users users={this.state.users} />} />
-          </Routes>
-        </div>
+      <div className="Container">
+        <Routes>
+          <Route path="/" element={<Login users={this.state.users} />} />
+          <Route
+            path="/registration"
+            element={
+              <Registration
+                users={this.state.users}
+                OnSaveUserData={this.OnSaveUserData}
+              />
+            }
+          />
+          <Route path="/users" element={<Users users={this.state.users} />} />
+        </Routes>
       </div>
     );
   }

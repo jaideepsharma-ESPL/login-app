@@ -73,7 +73,7 @@ const Login = (props) => {
         </Link>
       </div>
       <div className="form-group">
-        <Link to="/registration"> Registration</Link>
+        <Link to="/registration">Registration</Link>
       </div>
 
       <div className="form-group">

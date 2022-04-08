@@ -5,10 +5,14 @@ const Users = (props) => {
 
   return (
     <div className="container p-5">
+      <header>
+        <h1 className="font-weight-bold">USERS LIST</h1>
+        <hr />
+      </header>
       {totalUserCount === 0 ? (
         <p>No Users Exists</p>
       ) : (
-        <table className="table table-bordered">
+        <table className="table table-sm table-bordered">
           <thead>
             <tr>
               <th>Name</th>
