@@ -2,22 +2,29 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  const [loginValue, setloginValue] = useState();
+  const [loginValue, setloginValue] = useState({ email: "", password: "" });
+  let [validationMessage, setValidationMessage] = useState("");
   let navigate = useNavigate();
 
   function handleLogin(event) {
     event.preventDefault();
 
-    let validUser = props.users.filter((user) => {
-      return (
-        user.email == loginValue.email && user.password == loginValue.password
-      );
-    });
+    if (loginValue.email === "")
+      setValidationMessage("Email should not be blank");
+    else if (loginValue.password === "")
+      setValidationMessage("Password should not be blank");
+    else {
+      let validUser = props.users.filter((user) => {
+        return (
+          user.email == loginValue.email && user.password == loginValue.password
+        );
+      });
 
-    if (validUser.length > 0) {
-      navigate("/users");
-    } else {
-      alert("No Such User exists");
+      if (validUser.length > 0) {
+        navigate("/users");
+      } else {
+        setValidationMessage("Either email or password is wrong!");
+      }
     }
   }
 
@@ -65,6 +72,12 @@ const Login = (props) => {
       </div>
       <div className="form-group">
         <Link to="/registration"> Registration</Link>
+      </div>
+
+      <div className="form-group">
+        <label className="badge badge-danger" style={{ fontSize: 16 }}>
+          {validationMessage}
+        </label>
       </div>
     </div>
   );
