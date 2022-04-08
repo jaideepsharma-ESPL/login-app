@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const [loginValue, setloginValue] = useState({ email: "", password: "" });
-  let [validationMessage, setValidationMessage] = useState("");
+  const [validationMessage, setValidationMessage] = useState("");
   let navigate = useNavigate();
 
   function handleLogin(event) {
@@ -45,6 +45,7 @@ const Login = (props) => {
             name="email"
             className="form-control form-control-sm"
             onChange={OnValueChange}
+            required
           />
         </div>
       </div>
@@ -58,6 +59,7 @@ const Login = (props) => {
             name="password"
             className="form-control form-control-sm"
             onChange={OnValueChange}
+            required
           />
         </div>
       </div>
