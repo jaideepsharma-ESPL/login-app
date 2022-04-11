@@ -16,21 +16,44 @@ class App extends React.Component {
 
   OnLoginSession = ({ userName }) => {
     let time = new Date(Date.now());
+    let timeStr =
+      time.getDate().toString() +
+      "-" +
+      time.getMonth().toString() +
+      "-" +
+      time.getFullYear() +
+      " " +
+      time.getHours().toString() +
+      ":" +
+      time.getMinutes().toString() +
+      ":" +
+      time.getSeconds().toString();
 
     this.setState({
-      loginSession: { userName: userName, loggedAt: time.toString() },
+      loginSession: { userName: userName, loggedAt: timeStr },
     });
   };
   OnSaveUserData = ({ name, email, password }) => {
     let time = new Date(Date.now());
-
+    let timeStr =
+      time.getDate().toString() +
+      "-" +
+      time.getMonth().toString() +
+      "-" +
+      time.getFullYear() +
+      " " +
+      time.getHours().toString() +
+      ":" +
+      time.getMinutes().toString() +
+      ":" +
+      time.getSeconds().toString();
     let newUsers = [
       ...this.state.users,
       {
         name: name,
         email: email,
         password: password,
-        RegisteredOn: time.toString(),
+        RegisteredOn: timeStr,
       },
     ];
     this.setState({ users: newUsers });
