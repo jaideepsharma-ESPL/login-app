@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import "../css/login.css";
 
 const Login = (props) => {
-  const [loginValue, setloginValue] = useState({ email: "", password: "" });
+  const [loginValue, setloginValue] = useState({
+    email: "",
+    password: "",
+  });
   const [validationMessage, setValidationMessage] = useState("");
   let navigate = useNavigate();
 
@@ -21,6 +25,7 @@ const Login = (props) => {
       });
 
       if (validUser.length > 0) {
+        props.OnLoginSession({ userName: loginValue.email });
         navigate("/users");
       } else {
         setValidationMessage("Either email or password is wrong!");
@@ -63,7 +68,8 @@ const Login = (props) => {
           />
         </div>
       </div>
-      <div className="form-group">
+
+      <div className="form-group col-4 text-right">
         <Link
           to="/registration"
           onClick={handleLogin}
@@ -72,14 +78,18 @@ const Login = (props) => {
           Login
         </Link>
       </div>
-      <div className="form-group">
-        <Link to="/registration">Registration</Link>
-      </div>
 
-      <div className="form-group">
-        <label className="badge badge-danger" style={{ fontSize: 16 }}>
+      <div className="form-group col-4 text-center">
+        <label style={{ fontSize: 16, color: "red" }}>
           {validationMessage}
         </label>
+      </div>
+
+      <div className="form-group col-4">
+        <h6 className="strike">OR</h6>
+      </div>
+      <div className="form-group col-4 text-center">
+        <Link to="/registration">Registration</Link>
       </div>
     </div>
   );

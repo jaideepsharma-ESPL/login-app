@@ -8,12 +8,30 @@ import Users from "./components/users";
 class App extends React.Component {
   state = {
     users: [],
+    loginSession: {
+      userName: "",
+      loggedAt: 0,
+    },
   };
 
+  OnLoginSession = ({ userName }) => {
+    let time = new Date(Date.now());
+
+    this.setState({
+      loginSession: { userName: userName, loggedAt: time.toString() },
+    });
+  };
   OnSaveUserData = ({ name, email, password }) => {
+    let time = new Date(Date.now());
+
     let newUsers = [
       ...this.state.users,
-      { name: name, email: email, password: password },
+      {
+        name: name,
+        email: email,
+        password: password,
+        RegisteredOn: time.toString(),
+      },
     ];
     this.setState({ users: newUsers });
   };
@@ -22,7 +40,15 @@ class App extends React.Component {
     return (
       <div className="Container">
         <Routes>
-          <Route path="/" element={<Login users={this.state.users} />} />
+          <Route
+            path="/"
+            element={
+              <Login
+                users={this.state.users}
+                OnLoginSession={this.OnLoginSession}
+              />
+            }
+          />
           <Route
             path="/registration"
             element={
@@ -32,7 +58,15 @@ class App extends React.Component {
               />
             }
           />
-          <Route path="/users" element={<Users users={this.state.users} />} />
+          <Route
+            path="/users"
+            element={
+              <Users
+                users={this.state.users}
+                loginSession={this.state.loginSession}
+              />
+            }
+          />
         </Routes>
       </div>
     );
