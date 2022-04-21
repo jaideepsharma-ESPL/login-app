@@ -8,6 +8,11 @@ const Login = (props) => {
     password: "",
   });
   const [validationMessage, setValidationMessage] = useState("");
+  const [loginSession, setLoginSession] = useState({
+    userName: "",
+    loggedAt: 0,
+  });
+
   let navigate = useNavigate();
 
   function handleLogin(event) {
@@ -25,8 +30,22 @@ const Login = (props) => {
       });
 
       if (validUser.length > 0) {
-        props.OnLoginSession({ userName: loginValue.email });
-        navigate("/users");
+        let time = new Date(Date.now());
+        let timeStr =
+          time.getDate().toString() +
+          "-" +
+          time.getMonth().toString() +
+          "-" +
+          time.getFullYear() +
+          " " +
+          time.getHours().toString() +
+          ":" +
+          time.getMinutes().toString() +
+          ":" +
+          time.getSeconds().toString();
+
+        setLoginSession({ userName: loginValue.email, loggedAt: timeStr });
+        navigate("/users", loginSession);
       } else {
         setValidationMessage("Either email or password is wrong!");
       }
@@ -36,6 +55,11 @@ const Login = (props) => {
   function OnValueChange(e) {
     setloginValue({ ...loginValue, [e.target.name]: e.target.value });
   }
+
+  function clearSession() {
+    setLoginSession({ userName: "", loggedAt: 0 });
+  }
+
   return (
     <div className="container p-5">
       <div className="h4 font-weight-bold">LOGIN</div>

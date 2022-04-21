@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 
 const Users = (props) => {
   const totalUserCount = props.users.length;
+  console.log(props);
 
   return (
     <div className="container-fuild p-5">
@@ -13,6 +15,9 @@ const Users = (props) => {
           <div className="form-group col-6  text-right">
             <p>
               <b>Logged by :</b> {props.loginSession.userName}
+              {/* <Link to="/" onClick={props.clearSession()}>
+                Log out
+              </Link> */}
             </p>
             <p>
               <b>Logged At :</b> {props.loginSession.loggedAt}
